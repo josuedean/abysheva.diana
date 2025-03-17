@@ -26,8 +26,12 @@
     </section>
 
     <section id="assignment-submit">
-        <button onclick="window.location.href='submit-form.html'">Submit Assignment</button>
+        <h2>Submit Your Assignment</h2>
+        <form action="submit" method="POST" enctype="multipart/form-data">
+            <label for="assignment-file">Choose your assignment file:</label><br>
+            <input type="file" id="assignment-file" name="assignment-file" accept="*" required><br><br>
+            <input type="submit" value="Submit Assignment">
+        </form>
     </section>
-
 </body>
 </html>
