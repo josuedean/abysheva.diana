@@ -3,8 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Assignment</title>
-    <link rel="stylesheet" href="styles.css"> <!-- ✅ Link to your CSS file -->
+    <title>Submit Assignment - Diana Abysheva</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎀 Submit Your Assignment 🎀</h1>
+        
+        <div class="info-box">
+            <p><strong>Name:</strong> Diana Abysheva</p>
+            <p><strong>Major:</strong> IBM</p>
+            <p><strong>Year:</strong> 2nd Year</p>
+            <p><strong>Student ID:</strong> 2417678</p>
+            <button onclick="window.location.href='mailto:diana.absyheva2710@gmail.com'">📧 Contact Me</button>
+        </div>
+
+        <form id="upload-form" enctype="multipart/form-data">
+            <label for="assignment-file">📎 Choose Your Assignment File:</label>
+            <input type="file" id="assignment-file" name="assignment-file" accept=".txt,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.pdf,.csv"><br>
+
+            <label for="gdoc-link">🔗 Or Submit a Google Docs Link:</label>
+            <input type="url" id="gdoc-link" name="gdoc-link" placeholder="Paste Google Docs URL"><br>
+
+            <button type="submit" class="big-button">💖 Submit Assignment 💖</button>
+        </form>
+
+        <p id="message"></p>
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -30,80 +55,6 @@
             });
         });
     </script>
-</head>
-<body>
-    <div class="container">
-        <h2>Submit Your Assignment</h2>
-        <form id="upload-form" enctype="multipart/form-data">
-            <label for="assignment-file">Choose your assignment file:</label><br>
-            <input type="file" id="assignment-file" name="assignment-file" accept=".txt,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.pdf,.csv"><br><br>
-
-            <label for="gdoc-link">Or submit a Google Docs link:</label><br>
-            <input type="url" id="gdoc-link" name="gdoc-link" placeholder="Paste Google Docs URL"><br><br>
-
-            <button type="submit" class="big-button">Submit Assignment</button>
-        </form>
-
-        <p id="message"></p>
-    </div>
 </body>
 </html>
-<head>
-    <title>Submit Assignment</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #001F3F; /* Navy blue */
-            color: white;
-            text-align: center;
-            padding: 50px;
-        }
-
-        .container {
-            background-color: #003366; /* Dark navy */
-            padding: 30px;
-            border-radius: 10px;
-            display: inline-block;
-            width: 50%;
-            margin: auto;
-            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
-        }
-
-        h2 {
-            color: #FFD700; /* Gold */
-        }
-
-        label {
-            font-size: 18px;
-            display: block;
-            margin-top: 15px;
-        }
-
-        input[type="file"],
-        input[type="url"] {
-            padding: 10px;
-            margin-top: 10px;
-            width: 90%;
-            border-radius: 5px;
-            border: none;
-            display: block;
-            margin: 10px auto;
-        }
-
-        .big-button {
-            font-size: 20px;
-            padding: 15px 30px;
-            background-color: #FFD700; /* Gold */
-            color: #001F3F; /* Navy */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .big-button:hover {
-            background-color: #FFC300; /* Lighter gold */
-        }
-    </style>
-</head>
 
