@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Assignment</title>
+    <link rel="stylesheet" href="styles.css"> <!-- ✅ Link to your CSS file -->
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("upload-form").addEventListener("submit", async function(event) {
@@ -30,58 +32,19 @@
     </script>
 </head>
 <body>
-    <h2>Submit Your Assignment</h2>
-    <form id="upload-form" enctype="multipart/form-data">
-        <label for="assignment-file">Choose your assignment file:</label><br>
-        <input type="file" id="assignment-file" name="assignment-file" accept=".txt,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.pdf,.csv"><br><br>
+    <div class="container">
+        <h2>Submit Your Assignment</h2>
+        <form id="upload-form" enctype="multipart/form-data">
+            <label for="assignment-file">Choose your assignment file:</label><br>
+            <input type="file" id="assignment-file" name="assignment-file" accept=".txt,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.pdf,.csv"><br><br>
 
-        <label for="gdoc-link">Or submit a Google Docs link:</label><br>
-        <input type="url" id="gdoc-link" name="gdoc-link" placeholder="Paste Google Docs URL"><br><br>
+            <label for="gdoc-link">Or submit a Google Docs link:</label><br>
+            <input type="url" id="gdoc-link" name="gdoc-link" placeholder="Paste Google Docs URL"><br><br>
 
-        <button type="submit">Submit Assignment</button>
-    </form>
+            <button type="submit" class="big-button">Submit Assignment</button>
+        </form>
 
-    <p id="message"></p>
-
-    <script type="module">
-        import express from "express";
-        import multer from "multer";
-        import fs from "fs";
-        import path from "path";
-
-        const app = express();
-        const PORT = 5000;
-        const uploadDir = path.join(process.cwd(), "uploads");
-
-        if (!fs.existsSync(uploadDir)) {
-            fs.mkdirSync(uploadDir);
-        }
-
-        const storage = multer.diskStorage({
-            destination: (req, file, cb) => cb(null, "uploads/"),
-            filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname)),
-        });
-
-        const upload = multer({ storage });
-
-        app.use(express.static("."));
-        app.use(express.json());
-        app.use(express.urlencoded({ extended: true }));
-
-        app.post("/submit", upload.single("assignment-file"), (req, res) => {
-            if (req.file) {
-                return res.send("File uploaded successfully!");
-            }
-
-            if (req.body["gdoc-link"]) {
-                fs.appendFileSync("gdocs_links.txt", req.body["gdoc-link"] + "\n");
-                return res.send("Google Docs link submitted successfully!");
-            }
-
-            res.status(400).send("No file or link provided!");
-        });
-
-        app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-    </script>
+        <p id="message"></p>
+    </div>
 </body>
 </html>
