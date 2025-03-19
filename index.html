@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Assignment - Diana Abysheva</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>🎀 Submit Your Assignment 🎀</h1>
+        <h1>Hello and Welcome! 🎀</h1>
         
-        <div class="info-box">
+        <button class="info-button">📌 About Me</button>
+        <div class="info-box hidden">
             <p><strong>Name:</strong> Diana Abysheva</p>
             <p><strong>Major:</strong> IBM</p>
             <p><strong>Year:</strong> 2nd Year</p>
             <p><strong>Student ID:</strong> 2417678</p>
-            <button onclick="window.location.href='mailto:diana.absyheva2710@gmail.com'">📧 Contact Me</button>
         </div>
+
+        <button class="contact-button" onclick="window.location.href='mailto:diana.absyheva2710@gmail.com'">📧 Contact Me</button>
 
         <form id="upload-form" enctype="multipart/form-data">
             <label for="assignment-file">📎 Choose Your Assignment File:</label>
@@ -33,6 +36,10 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            document.querySelector(".info-button").addEventListener("click", () => {
+                document.querySelector(".info-box").classList.toggle("hidden");
+            });
+
             document.getElementById("upload-form").addEventListener("submit", async function(event) {
                 event.preventDefault();
 
@@ -57,4 +64,3 @@
     </script>
 </body>
 </html>
-
