@@ -1,44 +1,46 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f8ff; /* Light blue */
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background-color: #87cefa; /* Sky blue */
-    padding: 20px;
-    text-align: center;
+    background-color: #001F3F; /* Navy blue background */
     color: white;
+    text-align: center;
+    padding: 50px;
 }
 
-h1 {
-    font-size: 2.5em;
-}
-
-section {
-    margin: 20px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.container {
+    background-color: #003366; /* Dark navy blue box */
+    padding: 30px;
+    border-radius: 10px;
+    display: inline-block;
 }
 
 h2 {
-    color: #1e90ff; /* Dodger blue */
+    color: #FFD700; /* Gold text */
 }
 
-button {
-    background-color: #1e90ff;
-    color: white;
+label {
+    font-size: 18px;
+}
+
+input[type="file"],
+input[type="url"] {
+    padding: 10px;
+    margin-top: 10px;
+    width: 80%;
+    border-radius: 5px;
+    border: none;
+}
+
+.big-button {
+    font-size: 20px;
     padding: 15px 30px;
+    background-color: #FFD700; /* Gold */
+    color: #001F3F; /* Navy */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1.2em;
+    margin-top: 20px;
 }
 
-button:hover {
-    background-color: #4682b4; /* Steel blue */
+.big-button:hover {
+    background-color: #FFC300; /* Lighter gold */
 }
