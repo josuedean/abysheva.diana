@@ -1,52 +1,68 @@
 body {
     font-family: "Arial", sans-serif;
-    background-color: #fce4ec; /* Light pink */
+    background-color: white;
     color: #444;
     text-align: center;
     padding: 50px;
 }
 
+h1 {
+    font-family: 'Pacifico', cursive;
+    color: #e91e63; /* Cute pink */
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
 .container {
-    background-color: #f8bbd0; /* Soft pink */
+    background-color: white;
     padding: 30px;
     border-radius: 15px;
     display: inline-block;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 60%;
-}
-
-h1 {
-    color: #e91e63; /* Cute pink */
-    font-size: 28px;
-    margin-bottom: 20px;
+    width: 50%;
+    text-align: center;
 }
 
 .info-box {
-    background-color: #ffebee; /* Lightest pink */
+    background-color: #ffebee; /* Light pink */
     padding: 15px;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    display: none;
 }
 
-.info-box p {
-    margin: 5px 0;
-    font-size: 18px;
-    color: #d81b60;
+.hidden {
+    display: none;
 }
 
-.info-box button {
-    background-color: #e91e63; /* Bright pink */
+.info-button {
+    background-color: #ff80ab; /* Light pink */
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 16px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 18px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.info-box button:hover {
-    background-color: #c2185b; /* Dark pink */
+.info-button:hover {
+    background-color: #ff4081; /* Darker pink */
+}
+
+.contact-button {
+    background-color: #b3e5fc; /* Light blue */
+    color: #01579b;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.contact-button:hover {
+    background-color: #81d4fa; /* Slightly darker blue */
 }
 
 label {
@@ -72,7 +88,7 @@ input[type="url"] {
 .big-button {
     font-size: 20px;
     padding: 15px 30px;
-    background-color: #ff4081; /* Bright pink */
+    background-color: #ff80ab; /* Light pink */
     color: white;
     border: none;
     border-radius: 20px;
@@ -83,6 +99,6 @@ input[type="url"] {
 }
 
 .big-button:hover {
-    background-color: #e91e63; /* Darker pink */
+    background-color: #ff4081; /* Darker pink */
 }
 
