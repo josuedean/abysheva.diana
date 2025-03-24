@@ -40,6 +40,10 @@
             color: #ff66b2;
             font-weight: bold;
         }
+        .upload {
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -52,6 +56,11 @@
             <ul id="assignmentList">
                 <!-- Assignment links will be added here -->
             </ul>
+        </div>
+        <div class="upload">
+            <h2>Upload Assignment</h2>
+            <input type="file" id="fileInput">
+            <button onclick="uploadFile()">Upload</button>
         </div>
     </div>
 
@@ -71,6 +80,21 @@
             li.appendChild(a);
             assignmentList.appendChild(li);
         });
+
+        function uploadFile() {
+            const fileInput = document.getElementById("fileInput");
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const fileURL = URL.createObjectURL(file);
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                a.href = fileURL;
+                a.textContent = file.name;
+                a.download = file.name;
+                li.appendChild(a);
+                assignmentList.appendChild(li);
+            }
+        }
     </script>
 </body>
 </html>
