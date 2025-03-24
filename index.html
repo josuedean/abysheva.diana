@@ -3,77 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Assignment - Diana Abysheva</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("upload-form").addEventListener("submit", async function(event) {
-                event.preventDefault();
-                let formData = new FormData();
-                let file = document.getElementById("assignment-file").files[0];
-                let gdocLink = document.getElementById("gdoc-link").value;
-
-                if (file) {
-                    let fileURL = URL.createObjectURL(file);
-                    localStorage.setItem(file.name, fileURL);
-                } else if (gdocLink) {
-                    localStorage.setItem(gdocLink, gdocLink);
-                } else {
-                    document.getElementById("message").innerText = "Please upload a file or enter a Google Docs link.";
-                    return;
-                }
-
-                document.getElementById("message").innerText = "Assignment submitted successfully!";
-                displayAssignments();
-            });
-
-            displayAssignments();
-        });
-
-        function displayAssignments() {
-            let assignmentsList = document.getElementById("assignments-list");
-            assignmentsList.innerHTML = "<h3>Submitted Assignments:</h3>";
-            
-            Object.keys(localStorage).forEach(key => {
-                let link = document.createElement("a");
-                link.href = localStorage.getItem(key);
-                link.textContent = key;
-                link.target = "_blank";
-                let div = document.createElement("div");
-                div.appendChild(link);
-                assignmentsList.appendChild(div);
-            });
+    <title>Assignments - Diana Abysheva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffe6f2;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
         }
-    </script>
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #ff66b2;
+        }
+        .assignments {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .assignments ul {
+            list-style: none;
+            padding: 0;
+        }
+        .assignments li {
+            margin: 10px 0;
+        }
+        .assignments a {
+            text-decoration: none;
+            color: #ff66b2;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="main-title">Hello and Welcome! 🎀</h1>
-        
-        <button class="info-button" onclick="toggleInfo()">💖 About Me</button>
-        <div class="info-box hidden" id="info">
-            <p><strong>Name:</strong> Diana Abysheva</p>
-            <p><strong>Major:</strong> IBM</p>
-            <p><strong>Year:</strong> 2nd Year</p>
-            <p><strong>Student ID:</strong> 2417678</p>
+        <h1>Diana Abysheva</h1>
+        <p>ID: 2417678</p>
+        <p>IBM Student, 2nd Year</p>
+        <div class="assignments">
+            <h2>Assignments</h2>
+            <ul id="assignmentList">
+                <!-- Assignment links will be added here -->
+            </ul>
         </div>
-
-        <button class="contact-button" onclick="window.location.href='mailto:diana.absyheva2710@gmail.com'">📧 Contact Me</button>
-
-        <form id="upload-form" enctype="multipart/form-data">
-            <label for="assignment-file">📎 Choose Your Assignment File:</label>
-            <input type="file" id="assignment-file" name="assignment-file" accept=".txt,.doc,.docx,.pdf,.ppt,.xlsx"><br>
-
-            <label for="gdoc-link">🔗 Or Submit a Google Docs Link:</label>
-            <input type="url" id="gdoc-link" name="gdoc-link" placeholder="Paste Google Docs URL"><br>
-
-            <button type="submit" class="big-button">💖 Submit Assignment 💖</button>
-        </form>
-
-        <p id="message"></p>
-
-        <div id="assignments-list"></div>
     </div>
+
+    <script>
+        // Example: Adding assignments dynamically
+        const assignments = [
+            { name: "Assignment 1", link: "#" },
+            { name: "Assignment 2", link: "#" }
+        ];
+
+        const assignmentList = document.getElementById("assignmentList");
+        assignments.forEach(assignment => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = assignment.link;
+            a.textContent = assignment.name;
+            li.appendChild(a);
+            assignmentList.appendChild(li);
+        });
+    </script>
 </body>
 </html>
+
