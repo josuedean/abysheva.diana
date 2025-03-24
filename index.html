@@ -61,26 +61,15 @@
             <h2>Upload Assignment</h2>
             <input type="file" id="fileInput">
             <button onclick="uploadFile()">Upload</button>
+            <h2>Add Assignment URL</h2>
+            <input type="text" id="urlInput" placeholder="Enter assignment URL">
+            <button onclick="addURL()">Add URL</button>
         </div>
     </div>
 
     <script>
-        // Example: Adding assignments dynamically
-        const assignments = [
-            { name: "Assignment 1", link: "#" },
-            { name: "Assignment 2", link: "#" }
-        ];
-
         const assignmentList = document.getElementById("assignmentList");
-        assignments.forEach(assignment => {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-            a.href = assignment.link;
-            a.textContent = assignment.name;
-            li.appendChild(a);
-            assignmentList.appendChild(li);
-        });
-
+        
         function uploadFile() {
             const fileInput = document.getElementById("fileInput");
             if (fileInput.files.length > 0) {
@@ -93,6 +82,20 @@
                 a.download = file.name;
                 li.appendChild(a);
                 assignmentList.appendChild(li);
+            }
+        }
+
+        function addURL() {
+            const urlInput = document.getElementById("urlInput").value.trim();
+            if (urlInput) {
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                a.href = urlInput;
+                a.textContent = urlInput;
+                a.target = "_blank";
+                li.appendChild(a);
+                assignmentList.appendChild(li);
+                document.getElementById("urlInput").value = ""; // Clear input
             }
         }
     </script>
