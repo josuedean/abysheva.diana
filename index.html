@@ -89,6 +89,9 @@
             const password = prompt("Enter your password to access the upload section:");
             if (password === "27102005") { 
                 uploadSection.style.display = "block";
+                renderAssignments(true);
+            } else {
+                renderAssignments(false);
             }
         }
 
@@ -112,10 +115,10 @@
         function saveAssignment(link) {
             assignments.push(link);
             localStorage.setItem("assignments", JSON.stringify(assignments));
-            renderAssignments();
+            renderAssignments(true);
         }
 
-        function renderAssignments() {
+        function renderAssignments(hasAccess) {
             assignmentList.innerHTML = "";
             assignments.forEach((link, index) => {
                 const assignmentDiv = document.createElement("div");
@@ -124,7 +127,7 @@
                 button.onclick = () => window.location.href = link;
                 assignmentDiv.appendChild(button);
                 
-                if (uploadSection.style.display === "block") {
+                if (hasAccess) {
                     const deleteBtn = document.createElement("button");
                     deleteBtn.textContent = "X";
                     deleteBtn.classList.add("delete-btn");
@@ -141,7 +144,7 @@
             if (password === "27102005") {
                 assignments.splice(index, 1);
                 localStorage.setItem("assignments", JSON.stringify(assignments));
-                renderAssignments();
+                renderAssignments(true);
             } else {
                 alert("Incorrect password! You cannot delete assignments.");
             }
@@ -149,7 +152,6 @@
 
         window.onload = function () {
             checkAccess();
-            renderAssignments();
         };
     </script>
 </body>
