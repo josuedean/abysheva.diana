@@ -26,23 +26,36 @@
         }
         .assignments {
             margin-top: 20px;
-            text-align: left;
+            text-align: center;
         }
-        .assignments ul {
-            list-style: none;
-            padding: 0;
-        }
-        .assignments li {
-            margin: 10px 0;
-        }
-        .assignments a {
-            text-decoration: none;
-            color: #ff66b2;
-            font-weight: bold;
+        .assignments button {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
         }
         .upload {
             margin-top: 20px;
             text-align: center;
+        }
+        input {
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ff66b2;
+        }
+        button {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -53,9 +66,7 @@
         <p>IBM Student, 2nd Year</p>
         <div class="assignments">
             <h2>Assignments</h2>
-            <ul id="assignmentList">
-                <!-- Assignment links will be added here -->
-            </ul>
+            <div id="assignmentList"></div>
         </div>
         <div class="upload">
             <h2>Upload Assignment</h2>
@@ -68,6 +79,7 @@
     </div>
 
     <script>
+        let assignmentCount = 0;
         const assignmentList = document.getElementById("assignmentList");
         
         function uploadFile() {
@@ -75,28 +87,24 @@
             if (fileInput.files.length > 0) {
                 const file = fileInput.files[0];
                 const fileURL = URL.createObjectURL(file);
-                const li = document.createElement("li");
-                const a = document.createElement("a");
-                a.href = fileURL;
-                a.textContent = file.name;
-                a.download = file.name;
-                li.appendChild(a);
-                assignmentList.appendChild(li);
+                addAssignment(fileURL);
             }
         }
 
         function addURL() {
             const urlInput = document.getElementById("urlInput").value.trim();
             if (urlInput) {
-                const li = document.createElement("li");
-                const a = document.createElement("a");
-                a.href = urlInput;
-                a.textContent = urlInput;
-                a.target = "_blank";
-                li.appendChild(a);
-                assignmentList.appendChild(li);
+                addAssignment(urlInput);
                 document.getElementById("urlInput").value = ""; // Clear input
             }
+        }
+
+        function addAssignment(link) {
+            assignmentCount++;
+            const button = document.createElement("button");
+            button.textContent = `Assignment ${assignmentCount}`;
+            button.onclick = () => window.open(link, "_blank");
+            assignmentList.appendChild(button);
         }
     </script>
 </body>
