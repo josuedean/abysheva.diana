@@ -41,6 +41,7 @@
         .upload {
             margin-top: 20px;
             text-align: center;
+            display: none;
         }
         input {
             padding: 5px;
@@ -68,7 +69,7 @@
             <h2>Assignments</h2>
             <div id="assignmentList"></div>
         </div>
-        <div class="upload">
+        <div class="upload" id="uploadSection">
             <h2>Upload Assignment</h2>
             <input type="file" id="fileInput">
             <button onclick="uploadFile()">Upload</button>
@@ -81,7 +82,15 @@
     <script>
         let assignmentCount = 0;
         const assignmentList = document.getElementById("assignmentList");
-        
+        const uploadSection = document.getElementById("uploadSection");
+
+        function checkAccess() {
+            const password = prompt("Enter your password to access the upload section:");
+            if (password === "your_secure_password") { 
+                uploadSection.style.display = "block";
+            }
+        }
+
         function uploadFile() {
             const fileInput = document.getElementById("fileInput");
             if (fileInput.files.length > 0) {
@@ -106,6 +115,8 @@
             button.onclick = () => window.open(link, "_blank");
             assignmentList.appendChild(button);
         }
+
+        checkAccess();
     </script>
 </body>
 </html>
