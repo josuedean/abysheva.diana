@@ -88,6 +88,8 @@
             const password = prompt("Enter your password to access the upload section:");
             if (password === "your_secure_password") { 
                 uploadSection.style.display = "block";
+            } else {
+                alert("Incorrect password! You cannot upload assignments.");
             }
         }
 
@@ -116,7 +118,7 @@
             assignmentList.appendChild(button);
         }
 
-        checkAccess();
+        window.onload = checkAccess;
     </script>
 </body>
 </html>
