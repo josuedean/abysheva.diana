@@ -1,158 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignments - Diana Abysheva</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffe6f2;
-            color: #333;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #ff66b2;
-        }
-        .assignments {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .assignments button {
-            background-color: #ff66b2;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            margin: 5px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .upload {
-            margin-top: 20px;
-            text-align: center;
-            display: none;
-        }
-        input {
-            padding: 5px;
-            margin: 5px;
-            border-radius: 5px;
-            border: 1px solid #ff66b2;
-        }
-        .delete-btn {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            margin-left: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Assignments</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>Diana Abysheva</h1>
-        <p>ID: 2417678</p>
-        <p>IBM Student, 2nd Year</p>
-        <div class="assignments" id="assignmentListContainer">
-            <h2>Assignments</h2>
-            <div id="assignmentList"></div>
-        </div>
-        <div class="upload" id="uploadSection">
-            <h2>Upload Assignment</h2>
-            <input type="file" id="fileInput">
-            <button onclick="uploadFile()">Upload</button>
-            <h2>Add Assignment URL</h2>
-            <input type="text" id="urlInput" placeholder="Enter assignment URL">
-            <button onclick="addURL()">Add URL</button>
-        </div>
-    </div>
-
-    <script>
-        let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
-        const assignmentList = document.getElementById("assignmentList");
-        const uploadSection = document.getElementById("uploadSection");
-
-        function checkAccess() {
-            const password = prompt("Enter your password to access the upload section:");
-            if (password === "27102005") { 
-                uploadSection.style.display = "block";
-                renderAssignments(true);
-            } else {
-                renderAssignments(false);
-            }
-        }
-
-        function uploadFile() {
-            const fileInput = document.getElementById("fileInput");
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-                const fileName = `assignment${assignments.length + 1}.html`;
-                saveAssignment(fileName);
-            }
-        }
-
-        function addURL() {
-            const urlInput = document.getElementById("urlInput").value.trim();
-            if (urlInput) {
-                saveAssignment(urlInput);
-                document.getElementById("urlInput").value = ""; 
-            }
-        }
-
-        function saveAssignment(link) {
-            assignments.push(link);
-            localStorage.setItem("assignments", JSON.stringify(assignments));
-            renderAssignments(true);
-        }
-
-        function renderAssignments(hasAccess) {
-            assignmentList.innerHTML = "";
-            assignments.forEach((link, index) => {
-                const assignmentDiv = document.createElement("div");
-                const button = document.createElement("button");
-                button.textContent = `Assignment ${index + 1}`;
-                button.onclick = () => window.location.href = link;
-                assignmentDiv.appendChild(button);
-                
-                if (hasAccess) {
-                    const deleteBtn = document.createElement("button");
-                    deleteBtn.textContent = "X";
-                    deleteBtn.classList.add("delete-btn");
-                    deleteBtn.onclick = () => deleteAssignment(index);
-                    assignmentDiv.appendChild(deleteBtn);
-                }
-
-                assignmentList.appendChild(assignmentDiv);
-            });
-        }
-
-        function deleteAssignment(index) {
-            const password = prompt("Enter your password to delete this assignment:");
-            if (password === "27102005") {
-                assignments.splice(index, 1);
-                localStorage.setItem("assignments", JSON.stringify(assignments));
-                renderAssignments(true);
-            } else {
-                alert("Incorrect password! You cannot delete assignments.");
-            }
-        }
-
-        window.onload = function () {
-            checkAccess();
-        };
-    </script>
+  <div class="container">
+    <h1>📚 My Assignments</h1>
+    <p>Welcome! Click on an assignment below to view it.</p>
+    <ul id="assignment-list">
+      <!-- Assignment links will go here -->
+      <li><a href="assignments/assignment1.html">Assignment 1</a></li>
+      <li><a href="assignments/assignment2.html">Assignment 2</a></li>
+      <!-- Add more as needed -->
+    </ul>
+  </div>
 </body>
 </html>
+
