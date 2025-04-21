@@ -90,7 +90,7 @@
 <p><strong>Current Grade:</strong> <span id="grade">Loading...</span></p>
 
 <script>
-  fetch("https://script.google.com/macros/s/AKfycbyORBK5B9jnaV826FbjG8cQIpqHjBMwGblZJr1XsdeV9nB_i9HqWYI9wEo-flcynkE_dA/exec")
+  fetch("https://script.google.com/macros/s/AKfycbztmc68Gv2Ceyp4a-Di3HVyLJhGYHIbYmV5VqV-1-LTuV6_EdgD6_itumnOtCsKtd0/exec")
     .then(response => response.json())
     .then(data => {
       document.getElementById("grade").textContent = data.average;
