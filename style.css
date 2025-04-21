@@ -39,3 +39,10 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+#grade {
+  color: #ff69b4;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
