@@ -87,11 +87,13 @@
     <!-- Your existing links -->
   </ul>
 </section>
+<p><strong>Current Grade:</strong> <span id="grade">Loading...</span></p>
+
 <script>
-  fetch("https://script.google.com/macros/s/AKfycby0NiaR-gyrfhwdGJnKcFYPxCW0UHcxhQSZduoKWrvzbLvdSkk55Fy5KgNhyNzdxmomhg/exec")
+  fetch("https://script.google.com/macros/s/AKfycbz8MSgIBKsZVSOJCjCGNcjhhMtHDOtgL6DC1UZhBcWomXK1l9Z84I2H5NPIE3igeueMhw/exec")
     .then(response => response.json())
     .then(data => {
-      document.getElementById("grade").textContent = data.average + "%";
+      document.getElementById("grade").textContent = data.average;
     })
     .catch(error => {
       console.error("Grade fetch error:", error);
