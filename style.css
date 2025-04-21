@@ -45,4 +45,27 @@ a:hover {
   font-weight: bold;
   font-size: 1.2em;
 }
+.grade-box {
+  background: #fff0f5;
+  border: 2px dashed #ff85a2;
+  border-radius: 20px;
+  padding: 1.5em;
+  text-align: center;
+  margin: 2em auto;
+  max-width: 300px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.grade-box h2 {
+  color: #e75480;
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.grade-value {
+  font-size: 1.8em;
+  color: #ff69b4;
+  font-weight: bold;
+}
+
 
