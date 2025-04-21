@@ -87,17 +87,17 @@
     <!-- Your existing links -->
   </ul>
 </section>
-
 <script>
-  fetch("https://script.google.com/macros/s/AKfycbzwd-U0BKddjiMikn1IKr0vS-hPRsxRKEDG2YYXufZ7tsegrV9BopivWsonkk88HJUuUg/exec")
+  fetch("https://script.google.com/macros/s/AKfycby0NiaR-gyrfhwdGJnKcFYPxCW0UHcxhQSZduoKWrvzbLvdSkk55Fy5KgNhyNzdxmomhg/exec")
     .then(response => response.json())
     .then(data => {
       document.getElementById("grade").textContent = data.average + "%";
     })
     .catch(error => {
-      document.getElementById("grade").textContent = "Error loading grade";
-      console.error("Error:", error);
+      console.error("Grade fetch error:", error);
+      document.getElementById("grade").textContent = "Unable to load grade";
     });
 </script>
+
 </body>
 </html>
