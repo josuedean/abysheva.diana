@@ -65,6 +65,23 @@
       <h2>Contact Me</h2>
       <p>Email: <a href="mailto:diana.abysheva2710@gmail.com">diana.abysheva2710@gmail.com</a></p>
     </section>
+<section class="grade">
+  <h2>My Current Grade</h2>
+  <p id="gradeDisplay">Loading grade...</p>
+</section>
+</body>
+<script>
+  fetch("https://script.google.com/macros/s/AKfycbx3ojZoI3Un6wm-uXRDkrTSJuF9SZfBcSClkpamxG-TqKmDHghoydZ0xe0K3zwPanoC4Q/exec")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('gradeDisplay').textContent = `Current Grade: ${data.currentGrade}%`;
+    })
+    .catch(err => {
+      document.getElementById('gradeDisplay').textContent = 'Failed to load grade.';
+      console.error(err);
+    });
+</script>
+
     <section class="assignments">
       <h2>Assignments</h2>
       <ul>
@@ -83,22 +100,5 @@
 <section class="assignments">
   <h2>Assignments</h2>
     <!-- Your existing links -->
-</section>
-  <section class="grade-box">
-  <h2>📊 Current Grade</h2>
-  <p class="grade-value"><span id="grade">Loading...</span></p>
-</section>
-
-<script>
-  fetch("https://script.google.com/macros/s/AKfycbytUZaTjqjsg3ntlB6dWaqI-1Pz4NjeQniB4_9pzE6OUxLU0ywDhY4bAuI6sKmlOVUfhA/exec")
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById("grade").textContent = data.grade;
-    })
-    .catch(error => {
-      console.error("Error fetching grade:", error);
-      document.getElementById("grade").textContent = "Unable to load grade";
-    });
-</script>
 </body>
 </html>
