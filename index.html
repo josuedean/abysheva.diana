@@ -65,20 +65,16 @@
       <h2>Contact Me</h2>
       <p>Email: <a href="mailto:diana.abysheva2710@gmail.com">diana.abysheva2710@gmail.com</a></p>
     </section>
-<section class="grade">
-  <h2>My Current Grade</h2>
-  <p id="gradeDisplay">Loading grade...</p>
-  </section>
-    </body> 
+<p id="grade">Current Grade: Loading...</p>
+
 <script>
-  fetch("https://script.google.com/macros/s/AKfycbzPxfr8NmrdSaIX1XlL2uXzaaAwuFhSUCJqGKkaFjGcBtziq73WAIcQZAd_vxrZRH6T7A/exec")
+  fetch('https://script.google.com/macros/s/AKfycbzpsCGxptogqB80AhzQuxiU70J1ZOcUVPTj9y9VUhTra6vPzezD5EQpOonLh5B44gECOA/exec')
     .then(res => res.json())
     .then(data => {
-      document.getElementById('gradeDisplay').textContent = `Current Grade: ${data.currentGrade}%`;
+      document.getElementById('grade').textContent = "Current Grade: " + data.currentGrade;
     })
     .catch(err => {
-      document.getElementById('gradeDisplay').textContent = 'Failed to load grade.';
-      console.error(err);
+      document.getElementById('grade').textContent = "Failed to load grade";
     });
 </script>
 
