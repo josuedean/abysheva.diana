@@ -2,99 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Diana Abysheva - Assignments</title>
-  <style>
-    body {
-      background-color: #ffe6f0;
-      font-family: 'Segoe UI', sans-serif;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #ffb6c1;
-      color: white;
-      text-align: center;
-      padding: 1.5em 0;
-    }
-    main {
-      padding: 2em;
-    }
-    h1 {
-      margin-bottom: 0.3em;
-    }
-    .info {
-      margin-bottom: 2em;
-    }
-    .assignments {
-      background-color: white;
-      border-radius: 10px;
-      padding: 1em;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .assignments ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
-    .assignments li {
-      margin: 0.5em 0;
-    }
-    .assignments a {
-      color: #e75480;
-      text-decoration: none;
-    }
-    .assignments a:hover {
-      text-decoration: underline;
-    }
-    footer {
-      text-align: center;
-      padding: 1em;
-      margin-top: 2em;
-      font-size: 0.9em;
-      color: #888;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cryptography Tool</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Diana Abysheva</h1>
-    <p>ID: 2417678</p>
-  </header>
-  <main>
-    <section class="info">
-      <h2>Contact Me</h2>
-      <p>Email: <a href="mailto:diana.abysheva2710@gmail.com">diana.abysheva2710@gmail.com</a></p>
-    </section>
-<p id="grade">Current Grade: Loading...</p>
+  <div class="container">
+    <h1>🔐 Cute Cryptography Tool</h1>
 
-<script>
-  fetch('https://script.google.com/macros/s/AKfycbzpsCGxptogqB80AhzQuxiU70J1ZOcUVPTj9y9VUhTra6vPzezD5EQpOonLh5B44gECOA/exec')
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById('grade').textContent = "Current Grade: " + data.currentGrade;
-    })
-    .catch(err => {
-      document.getElementById('grade').textContent = "Failed to load grade";
-    });
-</script>
+    <textarea id="inputText" placeholder="Enter or drop your text here..."></textarea>
 
-    <section class="assignments">
-      <h2>Assignments</h2>
-      <ul>
-        <!-- Replace these with your actual file links -->
-        <li><a href="https://docs.google.com/document/d/1rfEfnFEStglSRhC8bbFEonfK3EGxbmW_pC9fSuowP6o/edit?usp=sharing"target="_blank">Find me!</a></li>
-        <li><a href="https://diiwonee.github.io/Cookies-Cryptography-Tool/" target="_blank"> Project 1 </a></li>
-        <li><a href="https://docs.google.com/document/d/19N2wdE0nuxms3SkNt9UcfTG3mjIN1FXmlT0nssgHWAs/edit?usp=sharing" target="_blank"> Documentation and Reflection </a></li>
-        <li><a href="https://diiwonee.github.io/Windows-Command-Line-Dungeon-Crawl/"target="_blank">CLI</a></li>
-        <li><a href="https://chatgpt.com/share/68255cac-a2ac-8013-97cc-07998c86fc02"target="_blank">Week HIF-Lumen</a></li>
-        <li><a href="https://docs.google.com/document/d/1sCuQRNOtwsEKsUSy84Du72rOTSKUfKpgH4xFX08A-jk/edit?usp=sharing"target="_blank">AI Tutor & FYC</a></li>
-        <li><a href="https://diiwonee.github.io/virtual.library/"target="_blank">Virtual Library ( actual "virtual library"..)</a></li>
-       <!-- Add more links here -->
-      </ul>
-    </section>
-  </main>
-  <footer>
-    © 2025 Diana Abysheva
-  </footer>
+    <select id="algorithm">
+      <option value="caesar">Caesar Cipher (Simple)</option>
+      <option value="atbash">Atbash Cipher (Simple)</option>
+      <option value="reverse">Reverse Text (Simple)</option>
+      <option value="vigenere">Vigenère Cipher (Intermediate)</option>
+      <option value="base64">Base64 Encode/Decode (Intermediate)</option>
+      <option value="xor">XOR Cipher (Advanced)</option>
+    </select>
+
+    <div class="buttons">
+      <button onclick="process('encrypt')">Encrypt</button>
+      <button onclick="process('decrypt')">Decrypt</button>
+      <button onclick="showInfo()">Info</button>
+      <button onclick="showTest()">Test</button>
+      <input type="file" id="fileInput" accept=".txt">
+      <button onclick="downloadFile()">Download Result</button>
+    </div>
+
+    <div class="output" id="output">Output will appear here...</div>
+
+    <div id="infoBox" class="hidden"></div>
+    <div id="testBox" class="hidden"></div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
