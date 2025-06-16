@@ -1,71 +1,70 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #ffe6f0;
+  background: linear-gradient(to bottom, #ffe6f0, #ffe6fa);
+  font-family: 'Georgia', serif;
   color: #333;
   margin: 0;
-  padding: 0;
+  padding: 20px;
 }
-
 .container {
-  max-width: 700px;
-  margin: 50px auto;
-  background-color: #fff0f5;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  color: #d63384;
-  text-align: center;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  margin: 15px 0;
-}
-
-a {
-  text-decoration: none;
-  color: #b30059;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-#grade {
-  color: #ff69b4;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-.grade-box {
-  background: #fff0f5;
-  border: 2px dashed #ff85a2;
+  max-width: 800px;
+  margin: auto;
+  background: #fff0f8;
+  padding: 20px;
   border-radius: 20px;
-  padding: 1.5em;
+  box-shadow: 0 0 10px #ffb6c1;
+}
+h1 {
   text-align: center;
-  margin: 2em auto;
-  max-width: 300px;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Cursive', serif;
+  color: #d63384;
 }
-
-.grade-box h2 {
-  color: #e75480;
-  font-size: 1.5em;
-  margin-bottom: 0.5em;
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 2px dashed #ff99cc;
+  border-radius: 10px;
+  background: #fff;
+  font-family: monospace;
+  font-size: 14px;
 }
-
-.grade-value {
-  font-size: 1.8em;
-  color: #ff69b4;
+select, button, input[type="file"] {
+  margin: 10px 5px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #ffc0cb;
+  color: white;
   font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
 }
-
-
+button:hover, select:hover, input[type="file"]:hover {
+  background: #ff69b4;
+}
+.output {
+  margin-top: 15px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ffb6c1;
+  border-radius: 10px;
+  min-height: 50px;
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+.hidden {
+  display: none;
+}
+#infoBox, #testBox {
+  margin-top: 20px;
+  padding: 10px;
+  background: #ffeef8;
+  border: 1px dashed #d63384;
+  border-radius: 10px;
+  font-size: 14px;
+  animation: fadeIn 0.4s ease-in;
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
