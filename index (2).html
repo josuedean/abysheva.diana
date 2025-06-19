@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Library</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #E6E6FA; /* Light lavender background */
+            margin: 0;
+            padding: 0;
+            color: #B497BD; /* Lavender text */
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        h1 {
+            text-align: center;
+            color: #B497BD; /* Lavender text */
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .search-container input, .search-container select, .search-container button {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .search-container button {
+            background-color: #B497BD; /* Lavender button color */
+            color: white;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background-color: #9e80a0; /* Slightly darker lavender */
+        }
+        .file-input-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            border: 2px dashed #B497BD;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .file-input-container label {
+            font-size: 18px;
+            color: #B497BD;
+            cursor: pointer;
+        }
+        .file-input-container input[type="file"] {
+            display: none;
+        }
+        .file-input-container button {
+            background-color: #B497BD;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .file-input-container button:hover {
+            background-color: #9e80a0;
+        }
+        .file-input-container span {
+            font-size: 16px;
+            color: #B497BD;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #B497BD;
+            color: white;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .book-info {
+            font-size: 18px; /* Larger text for book info */
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Virtual Library</h1>
+        
+        <!-- Search and CSV Upload Section -->
+        <div class="search-container">
+            <input type="text" id="bookTitle" placeholder="Enter book title" />
+            <button onclick="searchByTitle()">Search by Title</button>
+            
+            <!-- File upload -->
+            <div class="file-input-container">
+                <label for="csvFile">Upload CSV File:</label>
+                <input type="file" id="csvFile" accept=".csv" onchange="handleFile(event)" />
+                <button onclick="document.getElementById('csvFile').click();">Upload</button>
+                <span>Click to select a CSV file</span>
+            </div>
+        </div>
+
+        <!-- Search result or book info will be displayed here -->
+        <div id="resultContainer" class="search-container" style="display: none;">
+            <h3>Book Details:</h3>
+            <p id="bookDetails" class="book-info"></p>
+        </div>
+
+        <!-- Filter Options -->
+        <div id="filterOptions" class="search-container" style="display: none;">
+            <input type="text" id="bookID" placeholder="Enter Book ID (ISBN)" />
+            <input type="text" id="author" placeholder="Enter Author Name" />
+            <select id="genreSelect">
+                <option value="">Select Genre</option>
+            </select>
+            <input type="number" id="publicationDate" placeholder="Enter Publication Date" />
+            <select id="availableSelect">
+                <option value="">Available</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <input type="date" id="lastCheckoutDate" />
+            <button onclick="applyFilters()">Find</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Virtual Library</p>
+    </footer>
+
+    <script>
+        let booksData = [];
+        let genres = [];
+
+        // Function to handle file upload
+        function handleFile(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const contents = e.target.result;
+                const lines = contents.split("\n");
+                booksData = lines.slice(1).map(line => {
+                    const [ISBN, title, author, genre, publicationDate, available, lastCheckoutDate] = line.split(",");
+                    return { ISBN, title, author, genre, publicationDate, available, lastCheckoutDate };
+                });
+
+                // Populate the genres in the filter dropdown excluding "Daniel Kahneman" and "and Tomorrow"
+                populateGenres();
+                document.getElementById('filterOptions').style.display = "block";
+                alert("CSV file uploaded successfully!");
+            };
+            reader.readAsText(file);
+        }
+
+        // Function to populate genres in the filter options, excluding specific genres
+        function populateGenres() {
+            genres = [...new Set(booksData.map(book => book.genre))];
+            genres = genres.filter(genre => genre !== "Daniel Kahneman" && genre !== "and Tomorrow");
+            const genreSelect = document.getElementById("genreSelect");
+            genres.forEach(genre => {
+                const option = document.createElement("option");
+                option.value = genre;
+                option.textContent = genre;
+                genreSelect.appendChild(option);
+            });
+        }
+
+        // Function to search by title
+        function searchByTitle() {
+            const title = document.getElementById("bookTitle").value.toLowerCase();
+            const book = booksData.find(b => b.title.toLowerCase() === title);
+
+            if (book) {
+                const resultContainer = document.getElementById("resultContainer");
+                const bookDetails = document.getElementById("bookDetails");
+                bookDetails.innerHTML = `
+                    <strong>Title:</strong> ${book.title}<br>
+                    <strong>Author:</strong> ${book.author}<br>
+                    <strong>Genre:</strong> ${book.genre}<br>
+                    <strong>Publication Date:</strong> ${book.publicationDate}<br>
+                    <strong>Available:</strong> ${book.available}<br>
+                    <strong>Last Checkout Date:</strong> ${book.lastCheckoutDate}
+                `;
+                resultContainer.style.display = "block";
+            } else {
+                alert("Book not found.");
+            }
+        }
+
+        // Function to apply filters
+        function applyFilters() {
+            const bookID = document.getElementById("bookID").value;
+            const author = document.getElementById("author").value.toLowerCase();
+            const genre = document.getElementById("genreSelect").value;
+            const publicationDate = document.getElementById("publicationDate").value;
+            const available = document.getElementById("availableSelect").value;
+            const lastCheckoutDate = document.getElementById("lastCheckoutDate").value;
+
+            const filteredBooks = booksData.filter(book => {
+                return (
+                    (bookID === "" || book.ISBN.includes(bookID)) &&
+                    (author === "" || book.author.toLowerCase().includes(author)) &&
+                    (genre === "" || book.genre === genre) &&
+                    (publicationDate === "" || book.publicationDate === publicationDate) &&
+                    (available === "" || book.available === available) &&
+                    (lastCheckoutDate === "" || book.lastCheckoutDate === lastCheckoutDate)
+                );
+            });
+
+            if (filteredBooks.length > 0) {
+                const resultContainer = document.getElementById("resultContainer");
+                const bookDetails = document.getElementById("bookDetails");
+                bookDetails.innerHTML = `<h3>Filtered Books:</h3>`;
+                filteredBooks.forEach(book => {
+                    bookDetails.innerHTML += `
+                        <div><strong>Title:</strong> ${book.title}</div>
+                        <div><strong>Author:</strong> ${book.author}</div>
+                        <div><strong>Genre:</strong> ${book.genre}</div>
+                        <div><strong>Publication Date:</strong> ${book.publicationDate}</div>
+                        <div><strong>Available:</strong> ${book.available}</div>
+                        <div><strong>Last Checkout Date:</strong> ${book.lastCheckoutDate}</div>
+                        <hr>
+                    `;
+                });
+                resultContainer.style.display = "block";
+            } else {
+                alert("No books found with these filters.");
+            }
+        }
+    </script>
+</body>
+</html>
