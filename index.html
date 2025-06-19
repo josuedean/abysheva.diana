@@ -66,25 +66,20 @@
     </div>
 
     <div class="course-buttons">
-      <button onclick="loadProject('project1/index1.html/style.css/script.js')">📘 Digital Literacy - Project 1</button>
-      <button onclick="loadProject('virtuallibrary/index.html')">📘 Digital Literacy - Virtual Library </button>
-      <button onclick="loadProject('hospitality/index.html')">🏨 Hospitality</button>
-    </div>
+<div class="course-buttons">
+  <button onclick="loadProject('project1/index.html')">📘 Digital Literacy - Project 1</button>
+  <button onclick="loadProject('virtuallibrary/index.html')">📘 Digital Literacy - Virtual Library</button>
+</div>
 
-    <iframe id="projectFrame"></iframe>
-  </main>
+<iframe id="projectFrame" style="width:100%; height:600px; border:none; display:none;"></iframe>
 
-  <footer>
-    © 2025 Diana Abysheva
-  </footer>
-
-  <script>
-    function loadProject(path) {
-      const iframe = document.getElementById('projectFrame');
-      iframe.src = path;
-      iframe.style.display = 'block';
-      window.scrollTo(0, iframe.offsetTop);
-    }
-  </script>
+<script>
+  function loadProject(path) {
+    const iframe = document.getElementById('projectFrame');
+    iframe.src = path;
+    iframe.style.display = 'block';
+    window.scrollTo(0, iframe.offsetTop);
+  }
+</script>
 </body>
 </html>
