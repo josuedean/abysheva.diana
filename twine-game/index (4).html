@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🌌 Listener Beyond Stars</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="stars"></div>
+
+  <!-- Background music (main-theme) -->
+  <audio id="bg-music" autoplay loop>
+    <source src="assets/audio/main-theme.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Game container -->
+  <div id="game-container">
+    <img id="scene-image" src="assets/images/IMG-03.png" alt="Scene Image" />
+    <div id="text-box">
+      <p id="story-text">Loading story...</p>
+      <div id="choices"></div>
+    </div>
+  </div>
+
+  <!-- Comment Form (appears at the end) -->
+  <form id="commentForm" style="display:none;">
+    <h3>📝 Leave your thoughts</h3>
+    <input type="text" name="name" placeholder="Your name" required><br>
+    <textarea name="comment" placeholder="Your feedback..." required></textarea><br>
+    <button type="submit">Send</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
