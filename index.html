@@ -7,7 +7,6 @@
     body {
       background-color: #ffe6f0;
       font-family: 'Segoe UI', sans-serif;
-      color: #333;
       margin: 0;
       padding: 0;
     }
@@ -18,47 +17,33 @@
       padding: 1.5em 0;
       position: relative;
     }
-    .grade-box {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      background-color: white;
-      color: #ff69b4;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-weight: bold;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    main {
-      padding: 2em;
-    }
-    h1 {
-      margin-bottom: 0.3em;
-    }
     .info {
       margin-bottom: 2em;
+      text-align: center;
+      font-size: 1.1em;
     }
-    select {
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-      margin-bottom: 1em;
+    .course-buttons {
+      text-align: center;
+      margin: 2em 0;
     }
-    .assignments {
-      background-color: white;
+    .course-buttons button {
+      margin: 0.5em;
+      padding: 0.7em 1.5em;
+      font-size: 1em;
+      border: none;
+      background-color: #ff69b4;
+      color: white;
       border-radius: 10px;
-      padding: 1em;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
     }
-    .assignment {
-      margin: 0.7em 0;
+    .course-buttons button:hover {
+      background-color: #ff85c1;
     }
-    .assignment a {
-      color: #e75480;
-      text-decoration: none;
-    }
-    .assignment a:hover {
-      text-decoration: underline;
+    iframe {
+      display: none;
+      width: 100%;
+      height: 600px;
+      border: none;
     }
     footer {
       text-align: center;
@@ -73,25 +58,20 @@
   <header>
     <h1>Diana Abysheva</h1>
     <p>ID: 2417678</p>
-    <div class="grade-box" id="gradeBox">📊 Loading grade...</div>
   </header>
+
   <main>
-    <section class="info">
-      <h2>Contact Me</h2>
-      <p>Email: <a href="mailto:diana.abysheva2710@gmail.com">diana.abysheva2710@gmail.com</a></p>
-    </section>
+    <div class="info">
+      📧 Contact me: <a href="mailto:diana.abysheva2710@gmail.com">diana.abysheva2710@gmail.com</a>
+    </div>
 
-    <h2>Select Course:</h2>
-    <select id="courseSelector" onchange="filterAssignments()">
-      <option value="all">Show All</option>
-      <option value="marketing">Digital Literacy</option>
-    </select>
+    <div class="course-buttons">
+      <button onclick="loadProject('project1/')">📘 Digital Literacy - Project 1</button>
+      <button onclick="loadProject('cryptography/index.html')">🔐 Cryptography</button>
+      <button onclick="loadProject('hospitality/index.html')">🏨 Hospitality</button>
+    </div>
 
-    <section class="assignments" id="assignments">
-   <div class="assignment digital-literacy">
-  <a href="digital-literacy/project 1/index.html" target="_blank">Digital Literacy - Project 1</a>
-</div>
-    </section>
+    <iframe id="projectFrame"></iframe>
   </main>
 
   <footer>
@@ -99,30 +79,12 @@
   </footer>
 
   <script>
-    // Assignment filter
-    function filterAssignments() {
-      const selected = document.getElementById('courseSelector').value;
-      const assignments = document.querySelectorAll('.assignment');
-      assignments.forEach(div => {
-        if (selected === 'all' || div.classList.contains(selected)) {
-          div.style.display = 'block';
-        } else {
-          div.style.display = 'none';
-        }
-      });
+    function loadProject(path) {
+      const iframe = document.getElementById('projectFrame');
+      iframe.src = path;
+      iframe.style.display = 'block';
+      window.scrollTo(0, iframe.offsetTop);
     }
-
-    // Fetch grade from App Script
-    fetch("https://script.google.com/macros/s/AKfycbymxkiMrD16Wg7V1lnfX9_UbfXVGEs-vwQW3emQMYJbcCBgGl2hyWLu8OF4H68UDFrQ_g/exec")
-      .then(res => res.json())
-      .then(data => {
-        const box = document.getElementById("gradeBox");
-        box.textContent = `📊 Grade: ${data.currentGrade}`;
-      })
-      .catch(err => {
-        document.getElementById("gradeBox").textContent = "⚠️ Grade unavailable";
-        console.error(err);
-      });
   </script>
 </body>
 </html>
