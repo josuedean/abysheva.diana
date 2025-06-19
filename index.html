@@ -58,8 +58,8 @@
   <header>
     <h1>Diana Abysheva</h1>
     <p>ID: 2417678</p>
+    <div class="grade-box" id="gradeBox">📊 Loading grade...</div>
   </header>
-
   <main>
     <div class="info">
       📧 Contact me: <a href="mailto:diana.abysheva2710@gmail.com">diana.abysheva2710@gmail.com</a>
@@ -81,6 +81,17 @@
     iframe.style.display = 'block';
     window.scrollTo(0, iframe.offsetTop);
   }
+fetch("https://script.google.com/macros/s/AKfycbymxkiMrD16Wg7V1lnfX9_UbfXVGEs-vwQW3emQMYJbcCBgGl2hyWLu8OF4H68UDFrQ_g/exec")
+      .then(res => res.json())
+      .then(data => {
+        const box = document.getElementById("gradeBox");
+        box.textContent = `📊 Grade: ${data.currentGrade}`;
+      })
+      .catch(err => {
+        document.getElementById("gradeBox").textContent = "⚠️ Grade unavailable";
+        console.error(err);
+      });
+
 </script>
 </body>
 </html>
